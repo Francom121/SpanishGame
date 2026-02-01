@@ -349,6 +349,11 @@ function loadVoices() {
         }
     }
 
+    // Fallback: If no Spanish voices available (common on iOS), use any available voice
+    if (!selectedVoice && availableVoices.length > 0) {
+        selectedVoice = availableVoices[0];
+    }
+
     // Update voice selector UI if it exists
     updateVoiceSelector();
 }
@@ -363,7 +368,33 @@ function updateVoiceSelector() {
 
     voiceSelect.innerHTML = '';
 
-    spanishVoices.forEach(voice => {
+    // If no voices available yet, show loading message
+    if (availableVoices.length === 0) {
+        const option = document.createElement('option');
+        option.textContent = 'Cargando voces...';
+        voiceSelect.appendChild(option);
+        return;
+    }
+
+    // If no Spanish voices, fall back to ALL voices (important for iOS)
+    const voicesToShow = spanishVoices.length > 0 ? spanishVoices : availableVoices;
+
+    if (voicesToShow.length === 0) {
+        const option = document.createElement('option');
+        option.textContent = 'No hay voces disponibles';
+        voiceSelect.appendChild(option);
+        return;
+    }
+
+    // Add a helpful message for iOS users if no Spanish voices found
+    if (spanishVoices.length === 0 && availableVoices.length > 0) {
+        const infoOption = document.createElement('option');
+        infoOption.textContent = '--- Voces del sistema ---';
+        infoOption.disabled = true;
+        voiceSelect.appendChild(infoOption);
+    }
+
+    voicesToShow.forEach(voice => {
         const option = document.createElement('option');
         option.value = voice.name;
         option.textContent = `${voice.name} (${voice.lang})`;
@@ -525,7 +556,11 @@ document.getElementById('play-again-btn').addEventListener('click', () => {
 // Settings event listeners
 const settingsBtn = document.getElementById('settings-btn');
 if (settingsBtn) {
-    settingsBtn.addEventListener('click', () => showScreen('settings'));
+    settingsBtn.addEventListener('click', () => {
+        // Reload voices when opening settings (important for iOS)
+        loadVoices();
+        showScreen('settings');
+    });
 }
 
 const difficultyBtns = document.querySelectorAll('.difficulty-btn');
