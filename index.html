@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura de Palabras | Spanish Learning Game</title>
+    <meta name="description" content="A fun and interactive Spanish learning adventure for kids!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- Main Menu -->
+        <section id="main-menu" class="screen active">
+            <div class="menu-content">
+                <h1 class="game-title">Aventura de <span class="highlight">Palabras</span></h1>
+                <p class="game-subtitle">¡Aprende español jugando!</p>
+                <div class="total-stars">
+                    ⭐ Total: <span id="total-stars-display">0</span>
+                </div>
+                <div class="menu-actions">
+                    <button id="start-btn" class="btn-primary pulse">¡Empezar!</button>
+                    <button id="settings-btn" class="btn-secondary">⚙️ Configuración</button>
+                </div>
+            </div>
+            <div class="background-overlay"></div>
+        </section>
+
+        <!-- Game Mode Selection -->
+        <section id="game-mode-screen" class="screen">
+            <div class="container">
+                <h2 class="section-title">Elige tu juego</h2>
+                <div class="game-mode-grid">
+                    <div class="mode-card" data-mode="quiz">
+                        <div class="mode-icon">🎯</div>
+                        <h3>Quiz</h3>
+                        <p>Juego Clásico</p>
+                    </div>
+                    <div class="mode-card" data-mode="memory">
+                        <div class="mode-icon">🎴</div>
+                        <h3>Memoria</h3>
+                        <p>Encuentra Parejas</p>
+                    </div>
+                    <div class="mode-card" data-mode="truefalse">
+                        <div class="mode-icon">✓✗</div>
+                        <h3>Verdadero/Falso</h3>
+                        <p>Rápido y Divertido</p>
+                    </div>
+                    <div class="mode-card" data-mode="sentence">
+                        <div class="mode-icon">📝</div>
+                        <h3>Oraciones</h3>
+                        <p>Construye Frases</p>
+                    </div>
+                    <div class="mode-card" data-mode="puzzle">
+                        <div class="mode-icon">🧩</div>
+                        <h3>Rompecabezas</h3>
+                        <p>Completa la Imagen</p>
+                    </div>
+                    <div class="mode-card" data-mode="story">
+                        <div class="mode-icon">📖</div>
+                        <h3>Historia</h3>
+                        <p>Aventura Interactiva</p>
+                    </div>
+                    <div class="mode-card" data-mode="matching">
+                        <div class="mode-icon">🔗</div>
+                        <h3>Conectar</h3>
+                        <p>Une con Líneas</p>
+                    </div>
+                </div>
+                <button class="btn-secondary back-to-categories">Volver</button>
+            </div>
+        </section>
+
+        <!-- Category Selection -->
+        <section id="category-screen" class="screen">
+            <div class="container">
+                <h2 class="section-title">Elige tu mundo</h2>
+                <div class="category-grid">
+                    <div class="category-card" data-category="animals">
+                        <div class="card-icon">🦁</div>
+                        <h3>Animales</h3>
+                        <p>Zoológico Mágico</p>
+                    </div>
+                    <div class="category-card" data-category="colors">
+                        <div class="card-icon">🎨</div>
+                        <h3>Colores</h3>
+                        <p>Arcoíris de Diversión</p>
+                    </div>
+                    <div class="category-card" data-category="fruits">
+                        <div class="card-icon">🍎</div>
+                        <h3>Frutas</h3>
+                        <p>Bosque Sabroso</p>
+                    </div>
+                    <div class="category-card" data-category="numbers">
+                        <div class="card-icon">🔢</div>
+                        <h3>Números</h3>
+                        <p>Contando Estrellas</p>
+                    </div>
+                    <div class="category-card" data-category="vehicles">
+                        <div class="card-icon">🚀</div>
+                        <h3>Vehículos</h3>
+                        <p>Viaje Veloz</p>
+                    </div>
+                    <div class="category-card" data-category="nature">
+                        <div class="card-icon">🌈</div>
+                        <h3>Naturaleza</h3>
+                        <p>Mundo Lindo</p>
+                    </div>
+                    <div class="category-card" data-category="cosas_casa">
+                        <div class="card-icon">🏠</div>
+                        <h3>La Casa</h3>
+                        <p>Mis Cosas</p>
+                    </div>
+                    <div class="category-card" data-category="body">
+                        <div class="card-icon">👤</div>
+                        <h3>Cuerpo</h3>
+                        <p>Partes del Cuerpo</p>
+                    </div>
+                    <div class="category-card" data-category="family">
+                        <div class="card-icon">👨‍👩‍👧‍👦</div>
+                        <h3>Familia</h3>
+                        <p>Mi Familia</p>
+                    </div>
+                    <div class="category-card" data-category="food">
+                        <div class="card-icon">🍕</div>
+                        <h3>Comida</h3>
+                        <p>Delicioso</p>
+                    </div>
+                    <div class="category-card" data-category="actions">
+                        <div class="card-icon">⚡</div>
+                        <h3>Acciones</h3>
+                        <p>Verbos Divertidos</p>
+                    </div>
+                    <div class="category-card" data-category="weather">
+                        <div class="card-icon">☀️</div>
+                        <h3>Clima</h3>
+                        <p>El Tiempo</p>
+                    </div>
+                </div>
+                <button class="btn-secondary back-to-menu">Volver</button>
+            </div>
+        </section>
+
+        <!-- Settings Screen -->
+        <section id="settings-screen" class="screen">
+            <div class="container">
+                <h2 class="section-title">Configuración</h2>
+                <div class="settings-panel">
+                    <div class="setting-group">
+                        <h3>Dificultad</h3>
+                        <div class="difficulty-options">
+                            <button class="difficulty-btn selected" data-difficulty="easy">
+                                <span class="emoji">😊</span>
+                                <span>Fácil</span>
+                                <small>4 opciones</small>
+                            </button>
+                            <button class="difficulty-btn" data-difficulty="medium">
+                                <span class="emoji">🤔</span>
+                                <span>Medio</span>
+                                <small>6 opciones</small>
+                            </button>
+                            <button class="difficulty-btn" data-difficulty="hard">
+                                <span class="emoji">🤓</span>
+                                <span>Difícil</span>
+                                <small>8 opciones</small>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Modo Cronómetro</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="timer-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <p class="setting-desc">Activa el modo contra reloj para desafíos adicionales</p>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Usar Imágenes Reales</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="images-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <p class="setting-desc">Muestra fotos reales en lugar de emojis</p>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Voz Española</h3>
+                        <select id="voice-select" class="voice-selector">
+                            <option>Cargando voces...</option>
+                        </select>
+                        <p class="setting-desc">Selecciona la voz para pronunciación</p>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Velocidad de Voz: <span id="speed-value">0.85</span>x</h3>
+                        <input type="range" id="voice-speed" min="0.5" max="1.2" step="0.05" value="0.85"
+                            class="speed-slider">
+                        <p class="setting-desc">Ajusta qué tan rápido habla la voz</p>
+                    </div>
+                    <div class="setting-group">
+                        <button id="test-voice-btn" class="btn-test-voice">🔊 Probar Voz</button>
+                    </div>
+                </div>
+                <button class="btn-primary back-to-menu">Guardar y Volver</button>
+            </div>
+        </section>
+
+        <!-- Game Play -->
+        <section id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="score-display">0</span></div>
+                    <div class="streak-container">
+                        🔥 <span id="streak-display">0</span>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-fill" class="progress-fill"></div>
+                    <div id="character-marker" class="character-marker">🐒</div>
+                </div>
+                <button class="btn-small back-to-categories">Atrás</button>
+            </div>
+
+            <div class="game-board">
+                <div id="word-target" class="target-word">
+                    <!-- Bilingual targets injected here -->
+                </div>
+                <button id="repeat-btn" class="btn-repeat">🔊 Repetir</button>
+                <div class="options-grid" id="options-container">
+                    <!-- Cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Match Game -->
+        <section id="memory-game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="memory-score-display">0</span></div>
+                    <div class="streak-container">🎯 <span id="memory-pairs-display">0</span></div>
+                </div>
+                <button class="btn-small back-to-game-modes">Atrás</button>
+            </div>
+            <div class="memory-board" id="memory-board">
+                <!-- Memory cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- True/False Game -->
+        <section id="truefalse-game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="tf-score-display">0</span></div>
+                    <div class="streak-container">🔥 <span id="tf-streak-display">0</span></div>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="tf-progress-fill" class="progress-fill"></div>
+                </div>
+                <button class="btn-small back-to-game-modes">Atrás</button>
+            </div>
+            <div class="tf-game-board">
+                <div id="tf-question" class="tf-question">
+                    <!-- Question will be injected here -->
+                </div>
+                <div class="tf-buttons">
+                    <button id="true-btn" class="tf-btn tf-true">✓ VERDADERO</button>
+                    <button id="false-btn" class="tf-btn tf-false">✗ FALSO</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sentence Builder Game -->
+        <section id="sentence-game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="sentence-score-display">0</span></div>
+                </div>
+                <button class="btn-small back-to-game-modes">Atrás</button>
+            </div>
+            <div class="sentence-board">
+                <div id="sentence-target" class="sentence-target">
+                    <!-- Target sentence in English -->
+                </div>
+                <div id="sentence-drop-zone" class="sentence-drop-zone">
+                    <!-- Drop zone for words -->
+                </div>
+                <div id="sentence-word-bank" class="sentence-word-bank">
+                    <!-- Word bank will be injected here -->
+                </div>
+                <button id="sentence-check-btn" class="btn-primary">Comprobar</button>
+            </div>
+        </section>
+
+        <!-- Picture Puzzle Game -->
+        <section id="puzzle-game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="puzzle-score-display">0</span></div>
+                    <div class="streak-container">🧩 <span id="puzzle-pieces-display">0/9</span></div>
+                </div>
+                <button class="btn-small back-to-game-modes">Atrás</button>
+            </div>
+            <div class="puzzle-board">
+                <div id="puzzle-image-container" class="puzzle-image-container">
+                    <!-- Puzzle pieces will be revealed here -->
+                </div>
+                <div id="puzzle-question" class="puzzle-question">
+                    <!-- Question will be injected here -->
+                </div>
+                <div id="puzzle-options" class="puzzle-options">
+                    <!-- Answer options will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Mode Game -->
+        <section id="story-game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="story-score-display">0</span></div>
+                </div>
+                <button class="btn-small back-to-game-modes">Atrás</button>
+            </div>
+            <div class="story-board">
+                <div id="story-image" class="story-image">
+                    <!-- Story illustration will be injected here -->
+                </div>
+                <div id="story-text" class="story-text">
+                    <!-- Story text will be injected here -->
+                </div>
+                <div id="story-choices" class="story-choices">
+                    <!-- Choice buttons will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Matching Game (Connect Lines) -->
+        <section id="matching-game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="star-container">⭐ <span id="matching-score-display">0</span></div>
+                    <div class="streak-container">🔗 <span id="matching-pairs-display">0/6</span></div>
+                </div>
+                <button class="btn-small back-to-game-modes">Atrás</button>
+            </div>
+            <div class="matching-board">
+                <div class="matching-title">Une las imágenes con las palabras</div>
+                <div class="matching-container">
+                    <canvas id="matching-canvas" class="matching-canvas"></canvas>
+                    <div id="matching-left-column" class="matching-column">
+                        <!-- Image items will be injected here -->
+                    </div>
+                    <div id="matching-right-column" class="matching-column">
+                        <!-- Word items will be injected here -->
+                    </div>
+                </div>
+                <div class="matching-actions">
+                    <button id="matching-clear-btn" class="btn-secondary">Borrar Todo</button>
+                    <button id="matching-undo-btn" class="btn-secondary">⟲ Última</button>
+                    <button id="matching-check-btn" class="btn-primary">Comprobar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Screen -->
+        <section id="result-screen" class="screen">
+            <div class="result-card glass">
+                <h2>¡Excelente Trabajo!</h2>
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Puntuación</div>
+                        <div class="stat-value">⭐ <span id="final-score-val">0</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Mejor Racha</div>
+                        <div class="stat-value">🔥 <span id="final-streak-val">0</span></div>
+                    </div>
+                </div>
+                <div class="badges" id="badges-container"></div>
+                <div class="result-actions">
+                    <button id="play-again-btn" class="btn-primary">Jugar de nuevo</button>
+                    <button id="review-btn" class="btn-secondary" style="display: none;">📚 Practicar Palabras</button>
+                    <button class="btn-secondary back-to-menu">Menú Principal</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Audio -->
+    <audio id="success-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013.wav"></audio>
+    <audio id="error-sound" src="https://assets.mixkit.co/active_storage/sfx/2955/2955.wav"></audio>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
